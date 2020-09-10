@@ -7,14 +7,16 @@ def scraper():
     list0 = []
     list1 = []
     list2 = []
-    driver = webdriver.Chrome()
-    driver.get('link to website')
+    #On MacBook:
+    #driver = webdriver.Chrome()
+    driver = webdriver.Firefox()
+    driver.get('https://www.ip-finder.me/ip-full-list/')
     content = driver.page_source
     soup = BeautifulSoup(content)
-    for a in soup.findAll('div', attrs={'class': 'class-name'}):
+    for a in soup.findAll('div', attrs={'class': 'topIP'}):
         # you can use more than one class-name
-        address = a.find('div', attrs={'class': 'class-name class-name'})
-        block_count = a.find('div', attrs={'class': 'class-name'})
+        address = a.find('div', attrs={'class': 'ip'})
+        block_count = a.find('div', attrs={'class': 'count text-blue'})
         print(a)
         for b in a.find_all('a', href=True):
             link = b['href']
